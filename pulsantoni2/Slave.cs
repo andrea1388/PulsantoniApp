@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace pulsantoni2
 {
-    class Slave : INotifyPropertyChanged //: ListViewItem
+    public class Slave 
     {
-        protected int _segnale;
-        public event PropertyChangedEventHandler PropertyChanged;
         public int indirizzo { get; set; }
         public float batteria { get; set; }
-        public int segnale { get { return _segnale; }  set { _segnale = value; NotifyPropertyChanged(); } }
+        public int segnale { get; set; }
         public bool votato { get; set; }
         public float oravoto { get; set; }
         public bool sincronizzato { get; set; }
@@ -22,16 +15,9 @@ namespace pulsantoni2
         public bool isripetitore { get; set; }
         public int fallimenti { get; set; }
         public bool morto { get; set; }
+        //PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 
-        private void NotifyPropertyChanged( String propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                Program.fmain.Invoke((MethodInvoker)delegate { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); });
-                //PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
+    
 
         public Slave(int ind)
         {
@@ -45,22 +31,34 @@ namespace pulsantoni2
             fallimenti = 0;
             morto = false;
             sincronizzato = false;
-            //Name = ind.ToString();
-            //this.Text = ind.ToString();
-            //sthis.Index = 0;
-            /*
-            ListViewSubItem s = new ListViewSubItem(this,segnale.ToString());
-            s.Name = "Signal";
-            this.SubItems.Add(s);
-            s = new ListViewSubItem(this, sincronizzato.ToString());
-            s.Name = "In sync";
-            this.SubItems.Add(s);
-            */
-
+        }
+        /*
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                //Program.fmain.Invoke((MethodInvoker)delegate { PropertyChanged(this, new PropertyChangedEventArgs(propertyName)); });
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
+        private void PropertyChanged(Slave slave, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            throw new NotImplementedException();
+        }
 
+        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
 
-
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
+        */
     }
 }
